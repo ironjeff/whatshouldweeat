@@ -1,0 +1,128 @@
+
+TODO:
+Crash:
+2016-12-30 16:20:33.575 [fatal][tid:com.facebook.React.JavaScript] Unable to execute JS call: __fbBatchedBridge is undefined
+
+* Test with new db entries for recipes/restaurants
+* Add search for restaurants, foursquare integration?
+
+Finished:
+* Made 4 tabs: Recipes, Restaurants, TODO, Map
+
+Followed this tutorial:
+https://www.firebase.com/blog/2016-01-20-tutorial-firebase-react-native.html
+
+Got this error importing firebase:
+https://github.com/facebook/react-native/issues/4968
+
+Fix:
+https://github.com/facebook/react-native/issues/4968#issuecomment-196704261
+
+
+Commented out localhost and got an error:
+https://www.google.com/?gws_rd=ssl#q=unable+to+execute+js+call:+__fbbatchedbridge+is+undefined
+
+Fix:
+react-native bundle --entry-file ./index.ios.js --platform ios --bundle-output ios/main.jsbundle
+
+AppHub.io:
+https://dashboard.apphub.io/projects/msZyHBAfCbPIeuMMrxH1/quickstart
+
+To release:
+// From Documents/Projects/rntodo:
+npm start 
+
+// From Documents/Projects/rntodo/ios:
+curl http://localhost:8081/index.ios.bundle\?dev\=0 -o main.jsbundle
+
+Then uncomment #2 in appdelegate.m
+
+=============
+Full reset
+rm -rf node_modules/ && npm cache clean && npm install && npm start -- --reset-cache
+
+
+=============
+Got git set up locally with this project
+
+URL: https://github.com/ironjeff/rntodo
+
+Commands:
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/ironjeff/rntodo.git
+// since this errored above I did this:
+git remote set-url origin https://github.com/ironjeff/rntodo.git
+git push -u origin master
+
+The normal flow:
+git add .
+git commit
+git push
+
+============
+Icons:
+
+Tool to convert icon to base64:
+http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/result/
+
+Website with icons:
+http://www.flaticon.com/free-icon/spaguetti_135513
+
+Note: download 512 and then use 20 for scale in TabBarIOS:
+        <TabBarIOS.Item
+          selected={this.state.selectedTab === 'eat_out_fav'}
+          icon={{uri: pizza64Icon, scale: 20}}
+          onPress={() => {
+              this.setState({
+                  selectedTab: 'eat_out_fav',
+              });
+          }}>
+
+
+=============
+Change log:
+12/30/16 - first app built, working, committed, icons, etc...
+2/20/18 - Updated a few minor things, picking this back up.
+2/20/18 - Added a top level navigator in addition to the tabs.  It'll allow tapping onto a restaurant or recipe.  Added ability to tap on a restaurant - need to fill in that view.
+
+
+
+react-native bundle --entry-file='index.ios.js' --bundle-output='./ios/rntodo/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'
+
+============ getting started ====================
+Success! Created WhatShouldWeEat at /Users/jeffhuang/Documents/Projects/WhatShouldWeEat
+Inside that directory, you can run several commands:
+
+  npm start
+    Starts the development server so you can open your app in the Expo
+    app on your phone.
+
+  npm run ios
+    (Mac only, requires Xcode)
+    Starts the development server and loads your app in an iOS simulator.
+
+  npm run android
+    (Requires Android build tools)
+    Starts the development server and loads your app on a connected Android
+    device or emulator.
+
+  npm test
+    Starts the test runner.
+
+  npm run eject
+    Removes this tool and copies build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!
+
+We suggest that you begin by typing:
+
+  cd WhatShouldWeEat
+  npm start
+
+============ Adding npm packages =======
+$ npm install @shoutem/ui --save
+$ npm install --save react-navigation
+$ npm install firebase --save
+
+
